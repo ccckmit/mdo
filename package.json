@@ -1,13 +1,19 @@
 {
   "name": "mdo",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Markdown Object Parser",
   "main": "mdo.js",
   "dependencies": {},
   "devDependencies": {},
   "scripts": {},
   "bin": {},
-  "keywords": [ "Markdown", "Parser", "JSON", "Object", "markup"],
+  "keywords": [
+    "Markdown",
+    "Parser",
+    "JSON",
+    "Object",
+    "markup"
+  ],
   "homepage": "https://github.com/ccckmit/mdo",
   "repository": {
     "type": "git",
