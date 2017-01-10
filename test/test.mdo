@@ -1,0 +1,15 @@
+title: Markdown Object Parser
+author: { id:"ccc",
+  name: "Chung-Chen Chen",
+  email: "ccckmit@gmail.com"
+}
+keywords: [ "Markdown", "Parser", "JSON", "Object", "markup"]
+publish: 2017/01/10
+version: 1.01
+
+used_by: 
+package  | description
+---------|-------------------
+bookdown | A book publishing system for markdown
+rlab     | A scientific library like R+Matlab in JavaScript
+
