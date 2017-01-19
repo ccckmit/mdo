@@ -8,7 +8,7 @@ M.parseJson = function(json) { // Simplified JSON
 M.parseValue = function(value) {
   var json;
   try {
-    if (value.match(/.*\|.*\n\-+\|[\|\-]+\n/)) {
+    if (value.match(/.*\|.*\n\|?\-+\|[\|\-]+\n/)) {
       json = M.parseTable(value);
     } else {
       json = M.parseJson(value);
@@ -37,7 +37,8 @@ M.parseTable = function(table) {
         case "boolean":value = JSON.parse(value); break;
         case "date"  : value = (new Date(value)).toJSON(); break;
       }
-      json[fields[vi]] = value;
+      if (value.length > 0 && fields[vi].length > 0) 
+        json[fields[vi]] = value;      
     }
     jsonTable.push(json);
   }
