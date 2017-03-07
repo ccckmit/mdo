@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://travis-ci.org/feross/standard"><img src="https://img.shields.io/travis/feross/standard/master.svg" alt="Travis"></a>
+  <a href="https://travis-ci.org/feross/mdo"><img src="https://img.shields.io/travis/feross/mdo/master.svg" alt="Travis"></a>
   <a href="http://standardjs.com"><img src="https://img.shields.io/badge/code_style-standard-brightgreen.svg" alt="Standard - JavaScript Style Guide"></a>
   <a href="https://www.npmjs.com/package/mdo"><img src="https://img.shields.io/npm/dm/mdo.svg" alt="npm downloads"></a>
   <a href="https://www.npmjs.com/package/mdo"><img src="https://img.shields.io/npm/v/mdo.svg" alt="npm version"></a>
