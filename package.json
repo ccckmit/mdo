@@ -5,7 +5,9 @@
   "main": "mdo.js",
   "dependencies": {},
   "devDependencies": {},
-  "scripts": {},
+  "scripts": {
+      "test": "mocha"
+  },
   "bin": {},
   "keywords": [
     "Markdown",
