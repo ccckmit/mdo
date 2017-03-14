@@ -19,7 +19,9 @@ M.parseValue = function (value) {
   return json
 }
 
-M.parseTable = function (table) {
+M.parseTable = function (table, skipFields) {
+  skipFields = skipFields || []
+//  console.log('table.length=', table.length, 'typeof table=', typeof table)
   var lines = table.split(/\r?\n/)
   var len = lines.length
   var jsonTable = []
@@ -31,7 +33,9 @@ M.parseTable = function (table) {
     types[i] = (tokens.length >= 2) ? tokens[1].trim() : 'string'
   }
   for (i = 2; i < len; i++) {
-    var values = lines[i].split('|')
+    var line = lines[i].split('//')[0]
+    if (line.length === 0) continue
+    var values = line.split('|')
     var vlen = values.length
     var json = {}
     for (var vi = 0; vi < vlen; vi++) {
@@ -39,16 +43,38 @@ M.parseTable = function (table) {
       switch (types[vi]) {
         case 'json' : value = M.parseJson(value); break
         case 'number': value = parseFloat(value); break
-        case 'boolean':value = JSON.parse(value); break
+        case 'boolean': value = JSON.parse(value); break
         case 'date' : value = (new Date(value)).toJSON(); break
       }
-      if (value.length > 0 && fields[vi].length > 0) {
+      if (skipFields.indexOf(fields[vi]) < 0 && value.length > 0 && fields[vi].length > 0) {
         json[fields[vi]] = value
       }
     }
     jsonTable.push(json)
   }
   return jsonTable
+}
+
+M.list2str = function (objs, fields) {
+  var lines = []
+  var head = fields.join('|')
+  lines.push(head)
+  lines.push(head.replace(/[^|]/g, '-'))
+  for (var i in objs) {
+    var obj = objs[i]
+    var line = ''
+    for (var fi in fields) {
+      var value = obj[fields[fi]] || ''
+      line += '|' + value
+    }
+    lines.push(line.substring(1))
+  }
+  return lines.join('\n')
+}
+
+M.tableReorder = function(table, fields) {
+  var objs = M.parseTable(table)
+  return M.list2str(objs, fields)
 }
 
 M.parseMdo = function (mdo) {
@@ -75,12 +101,15 @@ M.parseMdo = function (mdo) {
   return obj
 }
 
-M.index = function (jsons, field) {
+M.index = function (jsons, field, append) {
+  append = append || false
   var map = {}
   for (var i in jsons) {
     var json = jsons[i]
     var key = json[field]
-    map[key] = json
+    if (append || typeof map[key] === 'undefined') {
+      map[key] = json
+    }
   }
   return map
 }
