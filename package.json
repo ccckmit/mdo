@@ -1,14 +1,14 @@
 {
   "name": "mdo",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Markdown Object Parser",
   "main": "mdo.js",
   "dependencies": {},
   "devDependencies": {
-     "mocha": "^3.1.0"
+    "mocha": "^3.1.0"
   },
   "scripts": {
-      "test": "mocha"
+    "test": "mocha"
   },
   "bin": {},
   "keywords": [
